@@ -2,7 +2,7 @@
 
 <div class="ListeFrais">
 	<h4>NOTE DE FRAIS SUR FORFAIT</h4>
-	<p>Nombre de forfait étape : <?php echo $etape['quantite'] ?></p>
+	<p>Nombre de forfait étape : <?php echo $resultat['etape'] ?></p>
 	<p>Nombre de kilomètres : <?php echo $kilo['quantite'] ?></p>
 	<p>Nombre de nuitées hôtel : <?php echo $nuitee['quantite'] ?></p>
 	<p>Nombre de repas restaurant : <?php echo $repas['quantite'] ?></p>

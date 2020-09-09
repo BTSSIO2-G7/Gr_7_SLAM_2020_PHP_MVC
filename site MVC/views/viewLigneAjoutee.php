@@ -1,47 +1,3 @@
-<?php session_start(); 
-
-if (isset($_SESSION['auth']) == false) {
-	header('Location: scripts/erreur.php');
-	} // Sécurité : Si l'utilisateur tente d'accéder à cette page sans être authentifié, il accède une page différente.
-	
-$bdd = new PDO('mysql:host=localhost;dbname=gsbv2;charset=utf8', 'gsbclient', 'passwordclient');
-$mois=$_POST['mois'];
-
-include("elements/string_mois.php");
-
-$donnees=$bdd->prepare('SELECT COUNT(id) FROM lignefraishorsforfait WHERE mois=? AND idVisiteur=?');
-$donnees->execute(array($mois,$_SESSION['idVisiteur']));
-$nbfiche=$donnees->fetchColumn();
-
-$donnees=$bdd->prepare('SELECT * FROM lignefraishorsforfait WHERE mois=? AND idVisiteur=?');
-$donnees->execute(array($mois,$_SESSION['idVisiteur']));
-$horsForfait=$donnees->fetchAll();
-
-$donnees=$bdd->prepare('SELECT * FROM lignefraisforfait WHERE mois=? AND idVisiteur=? AND idFraisForfait=?');
-$donnees->execute(array($mois,$_SESSION['idVisiteur'],'ETP'));
-$etape=$donnees->fetch();
-
-$donnees=$bdd->prepare('SELECT * FROM lignefraisforfait WHERE mois=? AND idVisiteur=? AND idFraisForfait=?');
-$donnees->execute(array($mois,$_SESSION['idVisiteur'],'KM'));
-$kilo=$donnees->fetch();
-
-$donnees=$bdd->prepare('SELECT * FROM lignefraisforfait WHERE mois=? AND idVisiteur=? AND idFraisForfait=?');
-$donnees->execute(array($mois,$_SESSION['idVisiteur'],'NUI'));
-$nuitee=$donnees->fetch();
-
-$donnees=$bdd->prepare('SELECT * FROM lignefraisforfait WHERE mois=? AND idVisiteur=? AND idFraisForfait=?');
-$donnees->execute(array($mois,$_SESSION['idVisiteur'],'REP'));
-$repas=$donnees->fetch();
-
-$donnees=$bdd->prepare('SELECT * FROM fichefrais WHERE idVisiteur=:idVisiteur AND mois=:mois');
-$donnees->execute(array(
-	'idVisiteur' => $_SESSION['idVisiteur'],
-	'mois' => $_POST['mois']
-	));
-$ficheFrais=$donnees->fetch();
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -51,7 +7,7 @@ $ficheFrais=$donnees->fetch();
     <title>Fiches de frais - GSB</title>
 	
 	<!-- Pointage vers le style.css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="views/css/style.css">
 	<!-- Création d'un favicon -->
 	<link rel="icon" href="assets/gsb.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

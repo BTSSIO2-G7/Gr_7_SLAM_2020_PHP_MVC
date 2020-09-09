@@ -1,6 +1,6 @@
 <!-- Elément : Formulaire permettant à l'utilisateur de rechercher un mois -->
 
-<form method="post" action="frais.php">
+<form method="post" action="index.php?etat=frais">
 
 	<label for="mois">Mois :</label>
 	<select name="mois" value="1">

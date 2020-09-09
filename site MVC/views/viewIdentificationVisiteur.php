@@ -1,8 +1,3 @@
-<?php 
-require('controllers/controller.php');
-$auth = IdVisiteur();
-?>
-
 <!DOCTYPE html>
 
 <html lang="fr">
@@ -13,7 +8,7 @@ $auth = IdVisiteur();
     <title>Connexion - GSB</title>
 	
 	<!-- Pointage vers le style.css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="views/css/style.css">
 	<!-- Création d'un favicon -->
 	<link rel="icon" href="assets/gsb.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,10 +40,10 @@ $auth = IdVisiteur();
   
 		<div class="FlexForm">
   
-			<img src="assets/gsb.png" alt="GSB" class="LogoGSB">
+			<img src="views/assets/gsb.png" alt="GSB" class="LogoGSB">
   
 		<!-- Début du formulaire -->
-			<form method="post" action="viewIdentificationVisiteur.php">
+			<form method="post" action="index.php?etat=visiteurmedical">
 
 			<!-- Demande du login -->
 			<div>

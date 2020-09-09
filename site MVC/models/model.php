@@ -2,15 +2,14 @@
 
 function ErrorCheck() {
 	if (isset($_SESSION['auth']) == false) {
-	header('Location: scripts/erreur.php');
+	header('Location: index.php?etat=erreur');
 	} 
 }
 
-function IdCheck() {
+function idCheck() {
 $bdd = new PDO('mysql:host=localhost;dbname=gsbv2;charset=utf8', 'gsbclient', 'passwordclient');
 $dblogin=$bdd->query('SELECT login FROM visiteur')->fetchAll(PDO::FETCH_COLUMN);
 $dbmdp=$bdd->query('SELECT mdp FROM visiteur')->fetchAll(PDO::FETCH_COLUMN);
-$auth=true;
 
 
 if ( isset($_POST['pw']) && isset($_POST['login']) ) {
@@ -31,9 +30,10 @@ for ($i=0; $i<count($dblogin); $i++){
 		$_SESSION['idVisiteur']=$donnees['id'];
 		$_SESSION['nom']=$donnees['nom'];
 		$_SESSION['prenom']=$donnees['prenom'];
+		
 		}
 	
-	header('Location: bienvenue_visiteur.php');
+	header('Location: index.php?etat=bienvenuevisiteur');
 	}
 	
 	else {
@@ -42,52 +42,50 @@ for ($i=0; $i<count($dblogin); $i++){
 	}
 }
 
-return $auth;
-
 }
 
-function FraisSelect() {
+function fraisSelect() {
 
 $bdd = new PDO('mysql:host=localhost;dbname=gsbv2;charset=utf8', 'gsbclient', 'passwordclient');
-$mois=$_POST['mois'];
-
-include("elements/string_mois.php");
+$mois=$_SESSION['mois'];
 
 $donnees=$bdd->prepare('SELECT COUNT(id) FROM lignefraishorsforfait WHERE mois=? AND idVisiteur=?');
 $donnees->execute(array($mois,$_SESSION['idVisiteur']));
-$nbfiche=$donnees->fetchColumn();
+$resultat['nbfiche']=$donnees->fetchColumn();
 
 $donnees=$bdd->prepare('SELECT * FROM lignefraishorsforfait WHERE mois=? AND idVisiteur=?');
 $donnees->execute(array($mois,$_SESSION['idVisiteur']));
-$horsForfait=$donnees->fetchAll();
+$resultat['horsForfait']=$donnees->fetchAll();
 
-$donnees=$bdd->prepare('SELECT * FROM lignefraisforfait WHERE mois=? AND idVisiteur=? AND idFraisForfait=?');
+$donnees=$bdd->prepare('SELECT quantite FROM lignefraisforfait WHERE mois=? AND idVisiteur=? AND idFraisForfait=?');
 $donnees->execute(array($mois,$_SESSION['idVisiteur'],'ETP'));
-$etape=$donnees->fetch();
+$resultat['etape']=$donnees->fetch();
 
 $donnees=$bdd->prepare('SELECT * FROM lignefraisforfait WHERE mois=? AND idVisiteur=? AND idFraisForfait=?');
 $donnees->execute(array($mois,$_SESSION['idVisiteur'],'KM'));
-$kilo=$donnees->fetch();
+$resultat['kilo']=$donnees->fetch();
 
 $donnees=$bdd->prepare('SELECT * FROM lignefraisforfait WHERE mois=? AND idVisiteur=? AND idFraisForfait=?');
 $donnees->execute(array($mois,$_SESSION['idVisiteur'],'NUI'));
-$nuitee=$donnees->fetch();
+$resultat['nuitee']=$donnees->fetch();
 
 $donnees=$bdd->prepare('SELECT * FROM lignefraisforfait WHERE mois=? AND idVisiteur=? AND idFraisForfait=?');
 $donnees->execute(array($mois,$_SESSION['idVisiteur'],'REP'));
-$repas=$donnees->fetch();
+$resultat['repas']=$donnees->fetch();
 
 $donnees=$bdd->prepare('SELECT * FROM fichefrais WHERE idVisiteur=:idVisiteur AND mois=:mois');
 $donnees->execute(array(
 	'idVisiteur' => $_SESSION['idVisiteur'],
 	'mois' => $_POST['mois']
 	));
-$ficheFrais=$donnees->fetch();
+$resultat['ficheFrais']=$donnees->fetch();
+
+return $resultat;
 
 }
 
 
-function FraisForfaitUpdate() {
+function fraisForfaitUpdate() {
 $bdd = new PDO('mysql:host=localhost;dbname=gsbv2;charset=utf8', 'gsbclient', 'passwordclient');
 
 $update = $bdd->prepare('UPDATE lignefraisforfait SET quantite = :etape WHERE mois = :mois AND idFraisForfait = :ETP AND idVisiteur = :idVisiteur');
@@ -136,7 +134,7 @@ $update->execute(array(
 }
 
 
-function NouvelleLigneHorsForfait() {
+function nouvelleLigneHorsForfait() {
 session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=gsbv2;charset=utf8', 'gsbclient', 'passwordclient');
@@ -181,8 +179,7 @@ header ('Location: ../nouvelleligne.php');
 }
 
 
-function NouvelleLigneSurForfait() {
-session_start();
+function nouvelleLigneSurForfait() {
 
 $bdd = new PDO('mysql:host=localhost;dbname=gsbv2;charset=utf8', 'gsbclient', 'passwordclient');
 
@@ -232,12 +229,10 @@ $insert->execute(array(
 	'idEtat' => 'CR'
 	)); // Création d'une fiche frais
 
-
-header ('Location: ../bienvenue_visiteur.php'); // Redirection 
 }
 
 
-function SupprimerLigneHorsForfait() {
+function supprimerLigneHorsForfait() {
 session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=gsbv2;charset=utf8', 'gsbclient', 'passwordclient');

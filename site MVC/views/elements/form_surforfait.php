@@ -1,12 +1,12 @@
 <!-- Elément : Insertion d'une ligne sur forfait dans la BDD -->
 
-<form method="post" action="scripts/nouvelleligne_surforfait.php">
+<form method="post" action="index.php?etat=lignesurforfait">
 
   <div class="FlexRenseignement">
 	
 	<p class="Description">Ce formulaire crée une fiche de forfait correspondant au mois renseigné. Insérez une valeur pour chaque champ.</p>
 
-	<?php include("elements/form_mois.php"); ?>
+	<?php include("form_mois.php"); ?>
 	
 	<label for="montant">Forfait étape (110€)</label>
 	<input type="number" name="etape" min="0" value="0" required="required" >

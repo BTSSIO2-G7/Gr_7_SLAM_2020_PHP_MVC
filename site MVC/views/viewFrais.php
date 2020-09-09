@@ -7,7 +7,7 @@
     <title>Fiches de frais - GSB</title>
 	
 	<!-- Pointage vers le style.css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="views/css/style.css">
 	<!-- Création d'un favicon -->
 	<link rel="icon" href="assets/gsb.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -36,7 +36,7 @@
 		<p class="LabelUtilisateur">Bienvenue, <?php echo $_SESSION['login']; ?></p>
 	
 	<!-- Fiche de frais du mois -->
-		<h2 class="TitreFrais">Votre fiche de frais -  <?php echo $strmois ?></h2>
+		<h2 class="TitreFrais">Votre fiche de frais -  Mois <?php echo $_SESSION['mois'] ?></h2>
 
 		<p class="Description">
 		<?php if ( isset ($ficheFrais['idVisiteur']) && isset ($ficheFrais['mois']) ) {include("elements/elementFrais_fiche.php");}

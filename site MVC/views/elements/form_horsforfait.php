@@ -1,12 +1,12 @@
 <!-- Elément : Formulaire d'insertion de ligne hors forfait dans la BDD -->
 
-<form method="post" action="scripts/nouvelleligne_horsforfait.php">
+<form method="post" action="index.php?etat=lignehorsforfait">
   
   <div class="FlexRenseignement">
 	
 	<p class="Description">Pour renseigner une ligne hors forfait, veuillez d'abord créer une fiche forfait correspondant au mois grâce au formulaire précédent.</p>
   
-	<?php include("elements/form_mois.php"); ?>
+	<?php include("form_mois.php"); ?>
 
     <label for="date">Date :</label>
     <input type="number" name="date" min="1" max="31">

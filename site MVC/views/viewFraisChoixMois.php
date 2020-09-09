@@ -1,11 +1,3 @@
-<?php session_start(); 
-
-if (isset($_SESSION['auth']) == false) {
-	header('Location: scripts/erreur.php');
-	} // Sécurité : Si l'utilisateur tente d'accéder à cette page sans être authentifié, il accède une page différente.
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -15,7 +7,7 @@ if (isset($_SESSION['auth']) == false) {
     <title>Fiches de frais - GSB</title>
 	
 	<!-- Pointage vers le style.css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="views/css/style.css">
 	<!-- Création d'un favicon -->
 	<link rel="icon" href="assets/gsb.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -44,8 +36,6 @@ if (isset($_SESSION['auth']) == false) {
 		<p class="LabelUtilisateur">Bienvenue, <?php echo $_SESSION['login']; ?></p>
   
 		<h2 class="TitreFrais">Vos fiches de frais</h2>
-  
-	<form method="post" action="frais.php">
   
 	<div class="FlexElements">
 		

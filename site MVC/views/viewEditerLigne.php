@@ -36,14 +36,34 @@
 	<p class="LabelUtilisateur">Bienvenue, <?php echo $_SESSION['login'] ?></p>
 
 	<!-- Formulaire de création de ligne sur forfait qui implique la création d'une fiche -->
-	<h2 class="TitreFrais">Nouvelle ligne de frais sur forfait</h2>
+	<h2 class="TitreFrais">Modifer une ligne de frais sur forfait</h2>
   	  
-	<?php include("views/elements/form_surforfait.php"); ?>
+	<!-- Elément : Insertion d'une ligne sur forfait dans la BDD -->
 
-	<!-- Formulaire de création de ligne hors forfait : impossible sans fiche de frais -->
-	<h2 class="TitreFrais">Nouvelle ligne de frais hors forfait</h2>
+<form method="post" action="scripts/editerligne_surforfait.php">
 
-	<?php include("views/elements/form_horsforfait.php"); ?>
+  <div class="FlexRenseignement">
+	
+	<input type="hidden" name="mois" value=<?php echo $_POST['mois'] ?>>
+
+	<label for="montant">Forfait étape (110€)</label>
+	<input type="number" name="etape" min="0" value=<?php echo $_POST['etape']?> required="required" >
+	
+	<label for="montant">Frais kilométrique (1€/km)</label>
+	<input type="number" name="kilo" min="0" value=<?php echo $_POST['kilo']?> required="required">
+	
+	<label for="montant">Nuitée hôtel (80€)</label>
+	<input type="number" name="nuitee" min="0" value=<?php echo $_POST['nuitee']?> required="required">
+	
+	<label for="montant">Repas restaurant (25€)</label>
+	<input type="number" name="repas" min="0" value=<?php echo $_POST['repas']?> required="required">
+  
+   <input type="submit" value="Modifier une fiche de frais" class="BtnConnexion">
+   
+
+  </div>
+  
+</form>
 
   </div>
   
