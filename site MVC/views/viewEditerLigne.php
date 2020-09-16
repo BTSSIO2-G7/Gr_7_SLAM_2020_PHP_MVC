@@ -9,7 +9,7 @@
 	<!-- Pointage vers le style.css -->
     <link rel="stylesheet" href="views/css/style.css">
 	<!-- Création d'un favicon -->
-	<link rel="icon" href="assets/gsb.png">
+	<link rel="icon" href="views/assets/gsb.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!-- Compatibilité IE et Responsive -->
@@ -40,7 +40,7 @@
   	  
 	<!-- Elément : Insertion d'une ligne sur forfait dans la BDD -->
 
-<form method="post" action="scripts/editerligne_surforfait.php">
+<form method="post" action="index.php?etat=editerligne">
 
   <div class="FlexRenseignement">
 	

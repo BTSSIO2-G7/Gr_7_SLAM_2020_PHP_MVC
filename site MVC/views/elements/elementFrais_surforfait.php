@@ -2,17 +2,17 @@
 
 <div class="ListeFrais">
 	<h4>NOTE DE FRAIS SUR FORFAIT</h4>
-	<p>Nombre de forfait étape : <?php echo $resultat['etape'] ?></p>
-	<p>Nombre de kilomètres : <?php echo $kilo['quantite'] ?></p>
-	<p>Nombre de nuitées hôtel : <?php echo $nuitee['quantite'] ?></p>
-	<p>Nombre de repas restaurant : <?php echo $repas['quantite'] ?></p>
+	<p>Nombre de forfait étape : <?php echo $resultat['etape']['quantite'] ?></p>
+	<p>Nombre de kilomètres : <?php echo $resultat['kilo']['quantite'] ?></p>
+	<p>Nombre de nuitées hôtel : <?php echo $resultat['nuitee']['quantite'] ?></p>
+	<p>Nombre de repas restaurant : <?php echo $resultat['repas']['quantite'] ?></p>
 	
-	<form method="post" action="editerligne.php">
-	<input type="hidden" name="mois" value=<?php echo $mois ?>>
-	<input type="hidden" name="etape" value=<?php echo $etape['quantite'] ?>>
-	<input type="hidden" name="kilo" value=<?php echo $kilo['quantite'] ?>>
-	<input type="hidden" name="nuitee" value=<?php echo $nuitee['quantite'] ?>>
-	<input type="hidden" name="repas" value=<?php echo $repas['quantite'] ?>>
+	<form method="post" action="index.php?etat=editerligneaffichage">
+	<input type="hidden" name="mois" value=<?php echo $_SESSION['mois'] ?>>
+	<input type="hidden" name="etape" value=<?php echo $resultat['etape']['quantite'] ?>>
+	<input type="hidden" name="kilo" value=<?php echo $resultat['kilo']['quantite'] ?>>
+	<input type="hidden" name="nuitee" value=<?php echo $resultat['nuitee']['quantite'] ?>>
+	<input type="hidden" name="repas" value=<?php echo $resultat['repas']['quantite'] ?>>
 	<input type="submit" value="Modifier cette ligne">
 	</form>
 	

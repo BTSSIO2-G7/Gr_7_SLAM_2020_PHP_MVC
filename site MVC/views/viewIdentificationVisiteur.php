@@ -67,7 +67,7 @@
 		<!-- Affichage d'erreur : si le mot de passe d'Admin est incorrect ou si le login est incorrect -->
 			<p class="Erreur">
 			<?php 
-			if ( $auth == false ) {echo "Erreur : Nom de compte ou mot de passe incorrect";} 
+			if ( $idCorrecte == false ) {echo "Erreur : Nom de compte ou mot de passe incorrect";} 
 			?>
 			</p>
 

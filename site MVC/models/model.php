@@ -1,12 +1,13 @@
 <?php session_start(); 
 
-function ErrorCheck() {
+function errorCheck() {
 	if (isset($_SESSION['auth']) == false) {
 	header('Location: index.php?etat=erreur');
 	} 
 }
 
 function idCheck() {
+
 $bdd = new PDO('mysql:host=localhost;dbname=gsbv2;charset=utf8', 'gsbclient', 'passwordclient');
 $dblogin=$bdd->query('SELECT login FROM visiteur')->fetchAll(PDO::FETCH_COLUMN);
 $dbmdp=$bdd->query('SELECT mdp FROM visiteur')->fetchAll(PDO::FETCH_COLUMN);
@@ -37,7 +38,7 @@ for ($i=0; $i<count($dblogin); $i++){
 	}
 	
 	else {
-		$auth=false;
+		$idCorrecte=false;
 		}	
 	}
 }
@@ -55,7 +56,7 @@ $resultat['nbfiche']=$donnees->fetchColumn();
 
 $donnees=$bdd->prepare('SELECT * FROM lignefraishorsforfait WHERE mois=? AND idVisiteur=?');
 $donnees->execute(array($mois,$_SESSION['idVisiteur']));
-$resultat['horsForfait']=$donnees->fetchAll();
+$resultat['horsforfait']=$donnees->fetchAll();
 
 $donnees=$bdd->prepare('SELECT quantite FROM lignefraisforfait WHERE mois=? AND idVisiteur=? AND idFraisForfait=?');
 $donnees->execute(array($mois,$_SESSION['idVisiteur'],'ETP'));
@@ -135,7 +136,6 @@ $update->execute(array(
 
 
 function nouvelleLigneHorsForfait() {
-session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=gsbv2;charset=utf8', 'gsbclient', 'passwordclient');
 
@@ -169,12 +169,11 @@ $update->execute(array(
 	'idVisiteur' => $_SESSION['idVisiteur'],
 	'mois' => $_POST['mois'],
 	)); // Mise à jour du nombre de justificatifs (+1)
-
-header ('Location: ../bienvenue_visiteur.php'); // Redirection vers la page de bienvenue
+ // Redirection vers la page de bienvenue
 }
 
 else { // Si il n'y a pas de fiche de frais, redirection vers la page précédente
-header ('Location: ../nouvelleligne.php');	
+header ('Location: ../index.php?etat=lignehorsforfait');	
 }
 }
 
@@ -233,7 +232,6 @@ $insert->execute(array(
 
 
 function supprimerLigneHorsForfait() {
-session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=gsbv2;charset=utf8', 'gsbclient', 'passwordclient');
 
@@ -269,7 +267,6 @@ $update->execute(array(
 	'mois' => $_POST['mois']
 	)); // Mise à jour d'une fiche frais
 	
-header ('Location: ../bienvenue_visiteur.php');
 }
 
 ?>

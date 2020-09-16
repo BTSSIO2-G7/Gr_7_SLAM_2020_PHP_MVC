@@ -48,7 +48,7 @@
 		<div class="FlexElements">
   
 		<!-- Nouvelle fiche -->
-			<div><button onclick="window.location.href = 'nouvelleligne.php';" class="BtnConnexion">Renseigner une nouvelle ligne de frais</button></div>
+			<div><button onclick="window.location.href = 'index.php?etat=nouvelleligne';" class="BtnConnexion">Renseigner une nouvelle ligne de frais</button></div>
 	
 		<!-- Choix du mois -->
 			<div>
@@ -61,9 +61,9 @@
 		<h2 class="TitreFrais">Ligne de frais sur forfait</h2>
 		<?php include("elements/elementFrais_surforfait.php"); ?>
 
-		<h2 class="TitreFrais">Ligne de frais hors forfait - <?php echo $nbfiche ?> ligne(s)</h2>
+		<h2 class="TitreFrais">Ligne de frais hors forfait - <?php echo $resultat['nbfiche'] ?> ligne(s)</h2>
 		<?php 
-		for ($i=0; $i<$nbfiche; $i++){
+		for ($i=0; $i<$resultat['nbfiche']; $i++){
 		include("elements/elementFrais_horsforfait.php"); }
 		?>
    

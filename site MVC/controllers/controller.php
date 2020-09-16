@@ -10,7 +10,7 @@ function vousEtes() {
 }
 
 function idVisiteur() {
-	$auth=true;
+	$idCorrecte=true;
 	idCheck();
 	
 	require 'views/viewIdentificationVisiteur.php';
@@ -21,7 +21,7 @@ function bienvenueVisiteur() {
 }
 
 function erreur() {
-	require 'views/viewErreur.php';
+	errorCheck();
 }
 
 function fraisChoixMois() {
@@ -29,13 +29,28 @@ function fraisChoixMois() {
 }
 
 function frais() {
-	fraisSelect();
+	$resultat=fraisSelect();
+	print_r($resultat);
 	require 'views/viewFrais.php';
 
 }
 
 function nouvelleLigne() {
 	require 'views/viewNouvelleLigne.php';
+}
+
+function editerLigneAffichage() {
+	require 'views/viewEditerLigne.php';
+}
+
+function editerLigne() {
+	fraisForfaitUpdate();
+	require 'views/viewBienvenueVisiteur.php';
+}
+
+function supprimerLigne() {
+	supprimerLigneHorsForfait();
+	require 'views/viewBienvenueVisiteur.php';
 }
 
 function ligneSurForfait() {
@@ -45,12 +60,13 @@ function ligneSurForfait() {
 
 function ligneHorsForfait() {
 	nouvelleLigneHorsForfait();
+	require 'views/viewBienvenueVisiteur.php';
 }
 
 function deconnexion() {
 // Ce php détruit la session actuelle, déconnectant l'utilisateur. 
 session_destroy();
-header ('Location: ../index.php');
+header ('Location: index.php');
 }
 
 ?>

@@ -1,14 +1,14 @@
 <!-- Elément : Affichage d'une ligne de frais hors forfait -->
 
 <div class="ListeFrais">
-	<h4>NOTE DE FRAIS HORS FORFAIT N°<?php echo $horsForfait[$i]['id']?></h4>
-	<p>Date : <?php echo $horsForfait[$i]['date'], ' ', $strmois ?><p>
-	<p>Montant : <?php echo $horsForfait[$i]['montant']?>€</p>
-	<p>Libellé : <?php echo $horsForfait[$i]['libelle']?></p>
+	<h4>NOTE DE FRAIS HORS FORFAIT N°<?php echo $resultat['horsforfait'][$i]['id']?></h4>
+	<p>Date : <?php echo $resultat['horsforfait'][$i]['date'], '/', $_SESSION['mois'] ?><p>
+	<p>Montant : <?php echo $resultat['horsforfait'][$i]['montant']?>€</p>
+	<p>Libellé : <?php echo $resultat['horsforfait'][$i]['libelle']?></p>
 	
-	<form method="post" action="scripts/supprimerligne_horsforfait.php">
-	<input type="hidden" name="id" value=<?php echo $horsForfait[$i]['id'] ?>>
-	<input type="hidden" name="mois" value=<?php echo $mois ?>>
+	<form method="post" action="index.php?etat=supprimerligne">
+	<input type="hidden" name="id" value=<?php echo $resultat['horsforfait'][$i]['id'] ?>>
+	<input type="hidden" name="mois" value=<?php echo $_SESSION['mois'] ?>>
 	<input type="submit" value="Supprimer cette ligne">
 	</form>
 
