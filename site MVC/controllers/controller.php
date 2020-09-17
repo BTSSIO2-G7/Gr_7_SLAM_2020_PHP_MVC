@@ -30,7 +30,6 @@ function fraisChoixMois() {
 
 function frais() {
 	$resultat=fraisSelect();
-	print_r($resultat);
 	require 'views/viewFrais.php';
 
 }
