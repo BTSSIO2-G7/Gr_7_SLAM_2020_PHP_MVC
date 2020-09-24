@@ -1,0 +1,390 @@
+/* Import de la police Vesta Night (gratuite). */
+@font-face {
+	font-family: "Archivo";
+	src: url("../assets/Archivo-Regular.ttf")
+}
+
+@font-face {
+	font-family: "FuturFW";
+	src: url("../assets/FUTRFW.ttf")
+}
+
+@font-face {
+	font-family: "Lemonmilk";
+	src: url("../assets/lemonmilk.otf")
+}
+
+
+/* Balise HTML qui représente tout ce qui est compris dans ma page. */
+html {
+	scroll-behavior:smooth;
+	height:100%
+}
+
+/* Corps de la page : le reste en hérite */
+body {
+	background-color:silver; 
+	background: url("../assets/fond.jpg");
+	background-attachment:fixed; 
+	background-size:cover;
+	font-family:"Archivo", sans-serif;
+	margin:0;
+	color:black;
+	display:flex;
+	flex-direction:column;
+	align-items:stretch;
+	min-height:100%
+}
+
+
+
+
+
+			/* PRISE EN CHARGE SUR TOUT APPAREIL */ 
+
+
+/* Le nom en haut de page, qui reste si on descends. */
+header {
+	max-height:100px;
+}
+
+
+	/* Tout ce qui suit est en rapport avec la barre de navigation. */
+
+
+/* La barre en elle-même. Flexbox. */
+nav {
+	background-image:linear-gradient(to top, rgba(52,58,64,1), rgba(72,78,84,1));
+	display:flex;
+	align-items:center;
+	padding:0;
+	margin:0;
+	position:sticky;
+	top:0;
+	box-shadow:0px 0px 5px rgba(0,0,0,0.8);
+}
+
+/* Le logo, c'est à dire mon nom. */
+.NavLogo{
+	padding-right:10px;
+	padding-left:10px;
+	font-size:1.2em;
+	text-shadow:1px 1px 2px black
+}
+
+/* L'option avec menu déroulant. */
+.BoutonDrop{
+	border:none;
+	cursor:pointer;
+	position:relative;
+}
+
+/* Les options de la barre. */
+.NavElement, .BoutonDrop, .NavElementDroite {
+	background-color:inherit;
+	border-right:2px solid rgba(42,48,54,1);
+	padding:20px;
+	font-size:1em;
+	color:white
+}
+
+.NavElementDroite {
+	margin-left:auto
+}
+
+/* Quand on passe par dessus les options. */
+.NavElement:hover, .BoutonDrop:hover, .NavElementDroite:hover{
+	background-color:rgba(255,255,255,0.1);
+}
+
+/* La division comprenant le menu déroulant. */
+.Drop {
+	position:relative;
+	display:inline-block;
+	margin-left:auto
+}
+
+/* Affichage des optoins du menu quand on passe sur la barre. */
+.Drop:hover .DropObjets {
+	display:block;
+}
+
+/* Les objets du menu. */
+.DropObjets {
+  display: none;
+  position: absolute;
+  margin-top:20px;
+  background-color: rgba(62,68,74,1);
+  min-width: 100%;
+  z-index: 1;
+}
+
+/* Hyperliens du menu déroulant. */
+.DropObjets a {
+	display:block;
+	padding:10px;
+	color:white
+}
+
+/* Quand on passe le curseur sur les objets. */
+.DropObjets:hover a:hover {
+	background-color:rgba(42,48,54,1)
+}
+
+/* Bordure pour toutes les options sauf la dernière. */
+.DropObjets a:not(:last-child) {
+	border-bottom:2px solid rgba(42,48,54,1);
+}
+
+/* Flexbox simples pour les contenus de page. */
+
+.FlexContenu {
+	flex:1;
+	margin-top:80px;
+	margin-bottom:80px
+}
+
+.FlexPage{
+	flex:1;
+	background:linear-gradient(to top, rgba(255,255,255,1), rgba(230,230,230,1));
+	border-left:10px solid rgb(55,71,152);
+	border-right:10px solid rgb(55,71,152);
+}
+
+.FlexChoixUtil {
+	display:flex;
+	flex-direction:row;
+	padding:10px;
+	justify-content:space-evenly;
+	align-items: center;
+}
+
+.FlexForm, .FlexRenseignement{
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	padding:10px
+}
+
+.FlexRenseignement {
+	border: 2px black dashed;
+	margin-left:auto;
+	margin-right:auto;
+	width:400px;
+}
+
+.FlexElements {
+	display:flex;
+	justify-content:space-around;
+	border-top:2px dashed black;
+	border-bottom:2px dashed black;
+	padding:10px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.FlexHeader {
+	display:flex;
+}
+
+.FlexProfil {
+	display:flex;
+	justify-content:center;
+}
+
+.ProfilElements {
+	margin:20px;
+}
+
+/* La division pour le menu de connexion. */
+.MenuConnexion, section {
+	background-color:white;
+	box-shadow:0px 0px 15px rgba(0,0,0,0.8);
+	width:400px;
+	min-height:400px;
+	margin-left:auto;
+	margin-right:auto;
+	justify-content:center
+}
+
+/* Le choix visiteur ou comptable. */
+.ChoixUtil {
+	display:block;
+	height:220px;
+	width:140px;
+	background-color:rgb(55,71,152);
+	text-align:center;
+	color:white;
+}
+
+.ChoixUtil p {
+	margin-top:90px;
+}
+
+.ChoixUtil:hover{
+	box-shadow:5px 5px 0px rgba(0,0,0,0.4)
+}
+
+/* Logo du site. */
+.LogoGSB, .LogoTitre {
+	height:80px;
+	text-align:center;
+	margin:10px
+}
+
+/* Image du profil. */
+.ImageProfil{
+	height:150px;
+	border-radius:150px;
+	background:rgb(200,200,200)
+}
+
+/* Les boutons du site. */
+.BtnConnexion {
+	width:100%
+}
+
+/* Le style des boutons. */
+input, .BtnConnexion, select {
+	border:none;
+	border-bottom:1px solid black;
+	margin-top:20px;
+	background-color:rgba(200,203,219,1);
+	outline:none;
+	padding:5px
+}
+
+/* Le titre de la page des frais. */
+.TitreFrais{
+	color:black
+}
+
+/* L'affichage des informations utilisateur. */
+.LabelUtilisateur{
+	text-align:right;
+	margin:20px
+}
+
+/* Chaque élément de la liste des fiches de frais. */
+.ListeFrais {
+	border:2px dashed black;
+	margin-left:80px;
+	margin-right:80px;
+	padding:10px;
+	margin-top:20px;
+	margin-bottom:20px
+}
+
+label{
+	margin-top:20px
+}
+
+		/* Contenu principal de la page. */ 
+
+p{
+	margin:0; 
+	margin-top:10px
+}
+
+/* Mon header 1, correspondant au nom. Large et coloré. */
+h1 {
+	color: white;
+	font-size:50px;
+	text-align:left;
+	margin:10px;
+	margin-left:20px;
+	text-shadow: 1px 1px 3px black;
+	font-family:"Lemonmilk"
+}
+
+/* Le slogan du site. */
+h3 {
+	font-size:1em; 
+	float:right;
+	position:relative;
+	top:-40px;
+	font-family: "FuturFW";
+	margin-right:20px;
+	color:white;
+	text-shadow: 1px 1px 3px black;
+}
+
+h4 {
+	margin:5px;
+}
+
+/* Des descriptions. */
+.Description {
+	text-align:center;
+}
+
+.Erreur{color:red; text-align:center}
+
+
+/* Header 2 est ici chaque titre de partie. */
+h2 {
+	font-size:35px;
+	text-align:center;
+	color:white
+}
+
+.ContenuTitre{
+	background:rgb(55,71,152);
+	padding:1px
+}
+
+/* Le style des liens hypertexte, qui ici servent pour le sommaire. */
+a {
+	text-decoration:none; cursor:pointer;
+}
+
+
+input:focus, .BtnConnexion:hover {
+	border-bottom:2px solid rgb(55,71,152)
+}
+
+a:hover, button:hover {
+	color:red;
+}
+
+/* Pour passer à la page précédente lors de la connexion. */
+.IconePrec{
+	font-size:4em; color:black;
+}
+
+/* Les spécificités du pied de page : ici, une flexbox. */
+footer {
+	position:relative;
+	background-color:rgba(0,0,0,0.6);
+	display:flex;
+	justify-content: flex-end;
+	color:white;
+	box-shadow:0px 0px 10px black
+}
+
+footer p {
+	margin-right:20px; margin-bottom:5px
+}
+
+	/* SPECIFIQUE MOBILE */
+
+@media all and (max-width:1100px) { 
+/* Quand la largeur descends, l'affichage du titre change et la taille de police diminue. */
+	h1, h3{
+		position:static; text-align:center; margin-left:0; margin-right:0; float:none
+	}
+	header{
+		max-height:300px
+	}
+	
+	.FlexHeader{
+		display:block
+	}
+	.LogoTitre{
+		display:none
+	}
+	
+	body{
+		font-size:0.9em;
+	} 
+}
